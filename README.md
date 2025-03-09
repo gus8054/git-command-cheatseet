@@ -46,7 +46,7 @@
 - `git add [디렉터리 이름]` : 해당 디렉터리 내의 모든 파일들을 Staging Area로 이동
 - `git add .` : Working Directory안의 모든 파일들을 Staging Area로 이동
 - `git commit` : Staging Area의 모든 파일들을 Repository로 이동, VI 에디터가 실행되며 메시지를 작성
-- `git commit -m "[메시지]"`: Staging Area의 모든 파일들을 Repository로 이동, 메시지까지 한 번에 작성
+- `git commit -m "[메시지]"` : Staging Area의 모든 파일들을 Repository로 이동, 메시지까지 한 번에 작성
 - `git commit -am "[메시지]"` : Working Directory의 모든 파일들을 Staging Area를 거치지 않고 Repository로 이동, 메시지까지 한 번에 작성
 - `git log` : 커밋 히스토리를 출력
 - `git log -[정수]` : 커밋 히스토리를 최근 순으로 정수개 출력
@@ -77,8 +77,8 @@
 - `git reset --hard [커밋 해시]` : 해당 커밋으로 현재 브랜치 참조를 변경 ( Working Directory 복구, Staging Area 복구, Commit 복구)
 - `git reset --mixed [커밋 해시]` : 해당 커밋으로 현재 브랜치 참조를 변경 ( Staging Area 복구, Commit 복구) -> 기본값
 - `git reset --soft [커밋 해시]` : 해당 커밋으로 현재 브랜치 참조를 변경 ( Commit 복구)
-- `git commit --amend` 최근 커밋을 수정, 최근 커밋과 스테이징 내용을 병합하는 방식. VI 에디터가 열리며 커밋 메시지도 수정 가능함.
-- `git commit --amend -m "[메시지]"`: 최근 커밋을 수정, 최근 커밋과 스테이징 내용을 병합하는 방식. 커밋 메시지도 같이 수정.
+- `git commit --amend` : 최근 커밋을 수정, 최근 커밋과 스테이징 내용을 병합하는 방식. VI 에디터가 열리며 커밋 메시지도 수정 가능함.
+- `git commit --amend -m "[메시지]"` : 최근 커밋을 수정, 최근 커밋과 스테이징 내용을 병합하는 방식. 커밋 메시지도 같이 수정.
 - `git checkout [파일 이름]` : 해당 파일이 Modified 상태면 Unmodified 였던 상태로 복구.
 - `git checkout .` : Modified 상태인 모든 파일을 Unmodified 였던 상태로 복구
 - `git checkout [커밋 해시]` : 해당 커밋으로 HEAD 참조 변경
@@ -91,9 +91,13 @@
 - `git push --set-upstream-to [원격 저장소 이름] [로컬 저장소 브랜치 이름]` : 원격 저장소와 로컬 저장소의 브랜치간의 업스트림을 설정하고 원격 저장소에 push
 - `git push` : 업스트림 설정이 되어있다면 원격 저장소에 push
 - `git pull` : 업스트림 설정이 되어있다면 원격 저장소에 pull
+- `git tag [태그 이름]` : 현재 커밋에 해당 태그 이름 붙이기
 - `git tag [태그 이름] [커밋 해시]` : 해당 커밋에 태그 이름 붙이기
 - `git tag --annotate [태그 이름] [커밋 해시]` : 해당 커밋에 태그 이름과 메시지 남기기. VI에디터가 열려 메시지를 입력한다.
-- `git tag --annotage [태그 이름] [커밋 해시]` : 해당 커밋에 태그 이름과 메시지를 한 번에 남기기.
+- `git tag --annotate [태그 이름] [커밋 해시] -m "[메시지]"` : 해당 커밋에 태그 이름과 메시지를 한 번에 남기기.
+- `git show [태그 이름]` : 해당 태그의 메시지를 포함한 상세정보를 출력.
+- `git tag` : 태그 리스트 출력
+- `git tag -n[줄 수]` : 태그 목록을 표시할 때 각 태그에 대한 메시지의 n번째 줄까지 보여주는 기능을 제공
 - `git tag --list` : 태그만 출력
 - `git tag --list "[텍스트 필터]"` : 와일드 카드 문자로 필터된 태그만 출력
 
@@ -108,8 +112,6 @@
 > - `**` : 모든 하위 디렉터리
 
 - `git tag --delete [태그 이름]` : 태그 삭제
-
-- `git tag` : 태그 리스트 출력
 - `git push --tags` : 로컬 저장소의 태그들을 원격 저장소에 반영
 - `git push [원격 저장소 이름] [태그 이름]` : 해당 태그를 원격 저장소에 반영
 - `git push --delete [원격 저장소 이름] [태그 이름]` : 원격 저장소에서 해당 태그를 삭제
@@ -167,9 +169,9 @@
 
 - `git merge --ff [브랜치 이름]` : fast-forward 관계에 있으면 커밋을 생성하지 않고 현재 브랜치의 참조만 변경 ( 기본 값 )
 
-- `git merge --no-ff[브랜치 이름]` : fast-forward 관계에 있어도 병합 커밋을 생성. 마치 3-way merge와 같음
+- `git merge --no-ff [브랜치 이름]` : fast-forward 관계에 있어도 병합 커밋을 생성. 마치 3-way merge와 같음
 - `git merge --squash [브랜치 이름]` : 병합할 브랜치를 현재 Working Directory와 Staging에 불러옴. 커밋은 하지 않음. 커밋을 하지 않았기 때문에 브랜치 삭제 시 D옵션을 사용해야한다.
-- `git rebase [브랜치 이름]` : 현재 브랜치의 시작지점(base커밋)을 해당 브랜치의 최근 커밋 이후로 이동시킨다.
+- `git rebase [브랜치 이름]` : 현재 브랜치의 시작지점(base커밋 바로 다음)을 해당 브랜치의 최근 커밋 이후로 이동시킨다.
 - `git rebase --abort` : 진행중인 rebase 작업을 종료
 - `git rebase --continue` : rebase 중 충돌이 일어났다면 충돌을 해결, 스테이징에 저장한 뒤 사용하여 rebase를 적용
 - `git cherry-pick [커밋 해시]` : 해당 커밋을 현재 브랜치와 병합하고 새로운 커밋을 생성. 브랜치의 최근 커밋이 아닌 과거 커밋을 불러와 현재 브랜치와 병합이 가능하다.
